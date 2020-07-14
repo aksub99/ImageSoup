@@ -1,1 +1,2 @@
 from ImageSoup.RSCImageSoup import RSCImageSoup
+from ImageSoup.NatureImageSoup import NatureImageSoup

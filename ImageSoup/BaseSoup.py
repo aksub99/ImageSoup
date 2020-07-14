@@ -15,8 +15,8 @@ class BaseSoup(object):
         else:
             return partial
 
-    def parse(self, html_str):
-        results = self._parse(html_str)
+    def parse(self, html_str, **kwargs):
+        results = self._parse(html_str, **kwargs)
         return results
 
     @staticmethod
