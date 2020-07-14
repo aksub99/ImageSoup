@@ -4,10 +4,6 @@ from pymongo import MongoClient
 
 
 class BaseSoup(object):
-    def setup_db(self):
-        self.client = MongoClient()
-        self.db = self.client.AuNP
-        self.collection = self.db.Paper_Raw_HTML
     
     @property
     def base_url(self):
@@ -20,7 +16,6 @@ class BaseSoup(object):
             return partial
 
     def parse(self, html_str):
-        self.setup_db()
         results = self._parse(html_str)
         return results
 

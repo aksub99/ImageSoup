@@ -10,23 +10,19 @@ class RSCSoup(BaseSoup):
     base_url = "https://pubs.rsc.org"
 
     def _extract_images(self, image_tables):
-        image_meta = {}
+        image_meta = {'figures':[]}
         for image_table in image_tables:
-            img_meta = {}
             # URL
             partial = image_table.find('img').get('src')
             img_url = self.create_full_url(partial)
-            
+
             # Caption
             caption = image_table.find('span', attrs={'class': 'graphic_title'}).get_text()
             
             # Title
             title = image_table.find('td', attrs={'class': 'image_title'}).find('b').get_text().strip()
 
-            img_meta["Image_URL"] = img_url
-            img_meta["Caption"] = caption
-
-            image_meta[title] = img_meta
+            image_meta['figures'].append({'Image_URL': img_url, 'Caption': caption, 'Title': title})
         return image_meta
 
     def _parse(self, html_string) -> dict:
@@ -35,4 +31,3 @@ class RSCSoup(BaseSoup):
         return self._extract_images(image_tables)
 
 RSCImageSoup = RSCSoup()
-print(RSCImageSoup)
