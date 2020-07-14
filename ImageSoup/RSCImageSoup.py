@@ -17,7 +17,10 @@ class RSCSoup(BaseSoup):
             img_url = self.create_full_url(partial)
 
             # Caption
-            caption = image_table.find('span', attrs={'class': 'graphic_title'}).get_text()
+            try:
+                caption = image_table.find('span', attrs={'class': 'graphic_title'}).get_text()
+            except:
+                continue
             
             # Title
             title = image_table.find('td', attrs={'class': 'image_title'}).find('b').get_text().strip()

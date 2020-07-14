@@ -18,6 +18,7 @@ for doc in collection.find({'Publisher': "The Royal Society of Chemistry"}):
         figures = RSCImageSoup.parse(content)
     except:
         print("No figures in paper!")
+        print("doi", doc["DOI"])
         continue
 
     meta["DOI"] = doc["DOI"]
