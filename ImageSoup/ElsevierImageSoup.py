@@ -25,7 +25,8 @@ class ElsevierSoup(BaseSoup):
             # URL
             ref = image.find('ce:link').get('locator')
             url = ref_to_url[ref]
-            img_url = re.search(r'^(.*)\?httpAccept.*$', url).group(1)
+            id = re.search(r'^https://api.elsevier.com/content/object/eid/(.*)\?httpAccept.*$', url).group(1)
+            img_url = 'https://ars.els-cdn.com/content/image/' + id
 
             # Caption
             try:
